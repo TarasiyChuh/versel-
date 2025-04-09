@@ -1,0 +1,210 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f0f0f0, #212121); /* Градієнт від білого до темного */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.game-page {
+  display: flex;
+  max-width: 1000px;
+  margin: 40px auto; /* Більший відступ зверху */
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff, #e0e0e0); /* Світлий градієнт для контейнера */
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* М’якша тінь */
+  transition: transform 0.3s ease;
+}
+
+.game-page:hover {
+  transform: scale(1.01); /* Легке збільшення при наведенні */
+}
+
+.game-image {
+  max-width: 100%;
+  height: 500px;
+  border-radius: 15px; /* Більше закруглення */
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.game-image:hover {
+  transform: scale(1.03); /* Збільшення зображення */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.game-info2 {
+  flex: 1 1 auto;
+  margin-left: 20px;
+  max-width: 600px;
+}
+
+.game-info2 h1 {
+  margin-bottom: 15px;
+  font-size: 2em;
+  color: #333; /* Темно-сірий для світлого фону */
+  text-align: left;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Легка тінь */
+}
+
+.game-info2 p {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  color: #555; /* Сірий для читабельності */
+  font-size: 1em;
+}
+
+.game-info2 h2 {
+  font-size: 1.75em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.requirements {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.requirements-list {
+  width: 48%;
+}
+
+.requirements-list h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.requirements-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.requirements-list ul li {
+  font-size: 1.1em;
+  color: #666; /* Світло-сірий для списків */
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.requirements-list ul li:hover {
+  color: #333; /* Темніший при наведенні */
+}
+
+.download-button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
+  background: linear-gradient(90deg, #333, #555); /* Темний градієнт для кнопки */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.download-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(90deg, #555, #777); /* Світліший градієнт */
+}
+
+.download-button:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Відступ між контейнерами */
+.game-page + .game-page {
+  margin-top: 50px;
+}
+
+/* Секція коментарів */
+.comments-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Світлий градієнт */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 80px;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #333; /* Темний текст */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form textarea::placeholder {
+  color: #888;
+}
+
+.rating-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comment-form button {
+  align-self: flex-end;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #007bff, #0056b3); /* Яскравий акцент */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.comments-list {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.comment {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc; /* Світлий розділювач */
+  width: 100%;
+  text-align: center;
+  color: #555; /* Сірий текст */
+  transition: background 0.3s ease;
+}
+
+.comment:hover {
+  background: rgba(0, 0, 0, 0.05); /* Легкий ефект при наведенні */
+}
+
+.comment p {
+  margin: 0;
+}
