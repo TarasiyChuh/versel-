@@ -9,17 +9,17 @@ function TopGamesPage() {
   useEffect(() => {
     const fetchTopGames = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/games/top/all');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/games/top/all`);
         setTopGames(res.data);
       } catch (err) {
         console.error('Помилка при завантаженні топ ігор:', err);
         setError('Не вдалося завантажити топ ігри');
       }
     };
-
+  
     fetchTopGames();
   }, []);
-
+  
   if (error) return <div className="top-error">{error}</div>;
 
   return (

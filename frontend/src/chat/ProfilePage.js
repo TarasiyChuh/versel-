@@ -11,12 +11,17 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const profileResponse = await axios.get(`http://localhost:5000/api/auth/users/${userId}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        const profileResponse = await axios.get(
+          `${API_URL}/api/auth/users/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          }
+        );
         setProfile(profileResponse.data);
       } catch (err) {
         console.error('Error fetching profile:', err);
@@ -26,7 +31,9 @@ const ProfilePage = () => {
 
     const fetchLibrary = async () => {
       try {
-        const libraryResponse = await axios.get(`http://localhost:5000/api/library/library/user/${userId}`);
+        const libraryResponse = await axios.get(
+          `${API_URL}/api/library/library/user/${userId}`
+        );
         setLibrary(libraryResponse.data);
       } catch (err) {
         console.error('Error fetching library:', err);
@@ -35,12 +42,12 @@ const ProfilePage = () => {
     };
 
     Promise.all([fetchProfile(), fetchLibrary()]).then(() => setLoading(false));
-  }, [userId]);
+  }, [userId, API_URL]);
 
   const handleStartChat = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/chats/createOrGetChat',
+        `${API_URL}/api/chats/createOrGetChat`,
         { user2: userId },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -59,7 +66,6 @@ const ProfilePage = () => {
       {/* Секція інформації користувача */}
       <div className="profile-user-card">
         <div className="profile-avatar-circle">
-          {/* Тут можна додати аватар якщо він є в profile */}
           <span className="profile-avatar-initial">
             {profile.username[0].toUpperCase()}
           </span>
@@ -71,14 +77,14 @@ const ProfilePage = () => {
       {/* Секція бібліотеки ігор */}
       <h2 className="profile-library-heading">Бібліотека ігор</h2>
       <div className="profile-games-grid">
-        {library && library.length > 0 ? (
+        {library.length > 0 ? (
           library.map((game) => (
             <div className="profile-game-item" key={game._id}>
               <div className="profile-game-image-wrapper">
-                <img 
-                  src={game.photo} 
-                  alt={game.title} 
-                  className="profile-game-image-content" 
+                <img
+                  src={game.photo}
+                  alt={game.title}
+                  className="profile-game-image-content"
                 />
                 <div className="profile-game-overlay">
                   <span className="profile-game-rating-badge">{game.rating}</span>

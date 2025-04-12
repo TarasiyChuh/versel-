@@ -12,7 +12,7 @@ const ChatRoom = ({ currentUserId }) => {
     const fetchMessages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/chats/${chatId}/messages`,
+          `${process.env.REACT_APP_API_URL}/api/chats/${chatId}/messages`,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         );
         setMessages(response.data);
@@ -22,12 +22,12 @@ const ChatRoom = ({ currentUserId }) => {
     };
     fetchMessages();
   }, [chatId]);
-
+  
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/chats/${chatId}/sendMessage`,
+        `${process.env.REACT_APP_API_URL}/api/chats/${chatId}/sendMessage`,
         { content: newMessage },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -37,6 +37,7 @@ const ChatRoom = ({ currentUserId }) => {
       console.error('Error sending message:', error);
     }
   };
+  
 
   return (
     <div className="chat-container">

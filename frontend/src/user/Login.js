@@ -9,15 +9,21 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Базовый URL из .env
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+      const response = await fetch(
+        `${API_URL}/api/auth/login`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await response.json();
       
       if (!response.ok) {
@@ -32,6 +38,7 @@ function Login() {
         navigate('/');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Сталася помилка. Спробуйте ще раз.');
     }
   };

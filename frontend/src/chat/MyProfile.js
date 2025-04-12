@@ -25,6 +25,8 @@ const Profile = () => {
   // Який саме userId юзаємо — з URL (чужий) чи свій
   const userId = routeUserId || currentUserId;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     // Якщо навіть після цього нема id — кидаємо на логін
     if (!userId) {
@@ -35,7 +37,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/auth/users/${userId}`,
+          `${API_URL}/api/auth/users/${userId}`,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         );
         setProfile(data);
@@ -48,7 +50,7 @@ const Profile = () => {
     const fetchLibrary = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/library/library/user/${userId}`,
+          `${API_URL}/api/library/library/user/${userId}`,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         );
         setLibrary(data);
@@ -60,12 +62,12 @@ const Profile = () => {
 
     Promise.all([fetchProfile(), fetchLibrary()])
       .then(() => setLoading(false));
-  }, [userId, navigate]);
+  }, [userId, navigate, API_URL]);
 
   const handleStartChat = async () => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/api/chats/createOrGetChat',
+        `${API_URL}/api/chats/createOrGetChat`,
         { user2: userId },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

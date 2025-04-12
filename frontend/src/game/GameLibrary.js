@@ -8,12 +8,12 @@ function GameLibrary() {
 
   // Завантаження ігор з сервера
   useEffect(() => {
-    fetch('http://localhost:5000/api/games')
+    fetch(`${process.env.REACT_APP_API_URL}/api/games`)
       .then((res) => res.json())
       .then((data) => setGames(data))
       .catch((error) => console.error('Error fetching games:', error));
   }, []);
-
+  
   // Обробка натискання на картку гри
   const handleCardClick = (gameId) => {
     const token = localStorage.getItem('token'); // Перевірка на наявність токену

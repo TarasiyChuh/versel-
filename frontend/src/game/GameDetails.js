@@ -14,26 +14,37 @@ function GameDetails() {
   const [votes, setVotes] = useState(0);
   const [ratingError, setRatingError] = useState('');
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  // Завантаження деталей гри
   const fetchGame = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/games/${gameId}`);
+      const res = await fetch(`${API_URL}/api/games/${gameId}`);
+      if (!res.ok) throw new Error('Не вдалося отримати деталі гри');
       const data = await res.json();
       setGame(data);
     } catch (e) {
       console.error('Помилка при отриманні деталей гри:', e);
     }
   };
+
+  // Завантаження коментарів
   const fetchComments = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/comments/${gameId}`);
-      setComments(await res.json());
+      const res = await fetch(`${API_URL}/api/comments/${gameId}`);
+      if (!res.ok) throw new Error('Не вдалося отримати коментарі');
+      const data = await res.json();
+      setComments(data);
     } catch (e) {
       console.error('Помилка при отриманні коментарів:', e);
     }
   };
+
+  // Завантаження рейтингу
   const fetchRating = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/games/${gameId}/rating`);
+      const res = await fetch(`${API_URL}/api/games/${gameId}/rating`);
+      if (!res.ok) throw new Error('Не вдалося отримати рейтинг');
       const data = await res.json();
       setAverageRating(data.averageRating);
       setVotes(data.votes);
@@ -49,6 +60,7 @@ function GameDetails() {
     fetchRating();
   }, [gameId]);
 
+  // Встановлення рейтингу користувачем
   const handleRating = async (value) => {
     setUserRating(value);
     setRatingError('');
@@ -59,7 +71,7 @@ function GameDetails() {
     }
     const userId = stored.id || stored._id;
     try {
-      const res = await fetch(`http://localhost:5000/api/games/${gameId}/rating`, {
+      const res = await fetch(`${API_URL}/api/games/${gameId}/rating`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, rating: value }),
@@ -71,11 +83,12 @@ function GameDetails() {
         await fetchRating();
       }
     } catch (e) {
-      console.error(e);
+      console.error('Помилка при відправці рейтингу:', e);
       setRatingError('Помилка при відправці рейтингу');
     }
   };
 
+  // Додавання коментаря
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!commentText.trim()) return;
@@ -87,7 +100,7 @@ function GameDetails() {
     const userId = stored.id || stored._id;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/comments', {
+      const res = await fetch(`${API_URL}/api/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ comment: commentText, userId, gameId }),
@@ -102,6 +115,7 @@ function GameDetails() {
     }
   };
 
+  // Додавання гри до бібліотеки
   const handleDownload = async () => {
     const stored = JSON.parse(localStorage.getItem('user'));
     if (!stored) {
@@ -111,7 +125,7 @@ function GameDetails() {
     const userId = stored.id || stored._id;
 
     try {
-      const res = await fetch('http://localhost:5000/api/library/add', {
+      const res = await fetch(`${API_URL}/api/library/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

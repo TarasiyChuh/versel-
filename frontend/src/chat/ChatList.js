@@ -10,7 +10,7 @@ const ChatsList = () => {
     const fetchChats = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data } = await axios.get('http://localhost:5000/api/chats/chats', {
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/chats/chats`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setChats(data);
@@ -20,7 +20,7 @@ const ChatsList = () => {
     };
     fetchChats();
   }, []);
-
+  
   const me = JSON.parse(localStorage.getItem('user')).id;
 
   return (
