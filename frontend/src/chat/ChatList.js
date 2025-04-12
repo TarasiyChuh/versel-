@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './ChatsList.css'; // Імпорт CSS-файлу
+import './ChatsList.css'; // Імпорт CSS-файлуі
 
 const ChatsList = () => {
   const [chats, setChats] = useState([]);
