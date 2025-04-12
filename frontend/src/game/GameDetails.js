@@ -16,7 +16,7 @@ function GameDetails() {
 
   const API_URL = process.env.REACT_APP_API_URL;
 
-  // Завантаження деталей гри
+  // Завантаження деталей гриі
   const fetchGame = async () => {
     try {
       const res = await fetch(`${API_URL}/api/games/${gameId}`);
