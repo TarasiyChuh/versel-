@@ -36,7 +36,7 @@ const ChatRoom = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/chats/${chatId}/messages`,
+        `${process.env.REACT_APP_API_URL}/api/chats/${chatId}/messages`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMessages(response.data);
@@ -62,7 +62,7 @@ const ChatRoom = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/chats/${chatId}/sendMessage`,
+        `${process.env.REACT_APP_API_URL}/api/chats/${chatId}/sendMessage`,
         { content: newMessage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
