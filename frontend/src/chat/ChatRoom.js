@@ -46,7 +46,7 @@ const ChatRoom = () => {
     }
   };
 
-  // Завантаження повідомлень при зміні chatId
+  // Завантаження повідомлень при зміні chatIdі
   useEffect(() => {
     fetchMessages();
   }, [chatId, token]);
