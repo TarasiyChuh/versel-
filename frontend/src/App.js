@@ -21,6 +21,7 @@ import ProfilePage from './chat/ProfilePage';
 import ChatRoom from './chat/ChatRoom';
 import Profile from './chat/MyProfile';
 import ChatList from './chat/ChatList'
+import GeminiChat from './chat/GeminiChat';
 
 const SettingsPage = () => <div>Сторінка налаштувань (ще не реалізована)</div>;
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/users" element={<ChatInitiator currentUserId={currentUserId} />} />
             <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/chat/:chatId" element={<ChatRoom currentUserId={currentUserId} />} />
+            <Route path="/gemini-chat" element={<GeminiChat />} />
             <Route path="/settings" element={<ChatList />} />
             <Route path="*" element={<div>404: Такої сторінки нема 😅</div>} />
           </Routes>

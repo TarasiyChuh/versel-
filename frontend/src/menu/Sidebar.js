@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaUser, FaStar, FaGamepad, FaUsers, FaEnvelope } from 'react-icons/fa';
+import { FaHome, FaUser, FaStar, FaGamepad, FaUsers, FaEnvelope, FaRobot } from 'react-icons/fa';
 import './Sidebar.css';
 
 function Sidebar() {
   return (
     <div className="sidebar">
-      {/* Заголовок */}
       <div className="sidebar-header">
         <h3>Мій Сайт</h3>
       </div>
 
-      {/* Основні посилання */}
       <Link to="/" className="sidebar-button">
         <FaHome className="sidebar-icon" />
         Головна
@@ -25,10 +23,8 @@ function Sidebar() {
         Рейтинг
       </Link>
 
-      {/* Розділювач */}
       <div className="sidebar-divider"></div>
 
-      {/* Додаткові посилання */}
       <Link to="/free-games" className="sidebar-button">
         <FaGamepad className="sidebar-icon" />
         Веб-ігри
@@ -37,8 +33,11 @@ function Sidebar() {
         <FaUsers className="sidebar-icon" />
         Користувачі
       </Link>
+      <Link to="/gemini-chat" className="sidebar-button">
+        <FaRobot className="sidebar-icon" />
+        Чат з AI
+      </Link>
 
-      {/* Нижня секція */}
       <div className="sidebar-footer">
         <Link to="/settings" className="sidebar-button">
           <FaEnvelope className="sidebar-icon" />

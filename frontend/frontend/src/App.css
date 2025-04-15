@@ -1,0 +1,302 @@
+/* Базові стилі */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f0f0f0, #212121);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5em;
+  color: #333;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.game-library {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.game-card {
+  width: 260px; /* було 200px */
+  background: linear-gradient(135deg, #383838, #2a2a2a);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.game-card img {
+  width: 100%;
+  height: 300px; /* було 200px */
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.game-card .game-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.game-card .game-title {
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 1.2em;
+  color: #ffffff;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  display: block;
+}
+
+.game-card .game-description {
+  font-size: 0.9em;
+  color: #bdaaaa;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  display: block;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  background: linear-gradient(90deg, #ffffff, #e0e0e0);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-box input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: #333;
+  background: transparent;
+  font-size: 1em;
+}
+
+.search-box input[type="text"]::placeholder {
+  color: #666;
+}
+
+.search-box button {
+  background: linear-gradient(90deg, #333, #555);
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.search-box button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #555, #777);
+}
+
+.rating-section .star-rating {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.rating-section .star {
+  font-size: 24px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.rating-section .star:hover:not(:disabled) {
+  transform: scale(1.2);
+  color: #ffd700;
+}
+
+.rating-section .star:disabled {
+  cursor: default;
+}
+
+.auth-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.auth-buttons .btn {
+  background: #444;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  pointer-events: auto;
+}
+
+.auth-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Адаптація для екранів до 380px */
+@media (max-width: 380px) {
+  body {
+    padding: 10px; /* Зменшено відступи */
+  }
+
+  h1 {
+    font-size: 1.75em; /* Зменшено розмір заголовка */
+    margin-top: 15px;
+  }
+
+  .game-library {
+    padding: 15px; /* Зменшено відступи */
+    gap: 15px; /* Зменшено проміжки між картками */
+  }
+
+  .game-card {
+    width: 100%; /* Картка займає всю ширину */
+    max-width: 280px; /* Обмеження максимальної ширини */
+  }
+
+  .game-card img {
+    height: 200px; /* Зменшено висоту зображення */
+  }
+
+  .game-card .game-info {
+    padding: 10px; /* Зменшено відступи */
+  }
+
+  .game-card .game-title {
+    font-size: 1em; /* Зменшено розмір шрифту */
+  }
+
+  .game-card .game-description {
+    font-size: 0.8em; /* Зменшено розмір шрифту */
+  }
+
+  .search-container {
+    padding: 10px; /* Зменшено відступи */
+  }
+
+  .search-box {
+    width: 100%; /* Пошук займає всю ширину */
+    max-width: 320px; /* Обмеження ширини */
+    border-radius: 15px; /* Зменшено радіус */
+  }
+
+  .search-box input[type="text"] {
+    padding: 8px; /* Зменшено відступи */
+    font-size: 0.9em; /* Зменшено шрифт */
+  }
+
+  .search-box button {
+    padding: 8px 15px; /* Зменшено розмір кнопки */
+    font-size: 0.9em;
+  }
+
+  .rating-section .star {
+    font-size: 20px; /* Зменшено розмір зірок */
+  }
+
+  .auth-buttons {
+    top: 10px; /* Зменшено відступ зверху */
+    right: 10px; /* Зменшено відступ справа */
+    flex-direction: column; /* Кнопки в стовпчик */
+    gap: 0.5rem; /* Зменшено проміжок */
+  }
+
+  .auth-buttons .btn {
+    padding: 0.5rem 1rem; /* Зменшено розмір кнопок */
+    font-size: 0.9em; /* Зменшено шрифт */
+    border-radius: 8px; /* Зменшено радіус */
+  }
+}
+/* Адаптація для екранів із масштабом ~125% (1.25x) */
+@media (min-resolution: 120dpi) and (max-resolution: 144dpi) {
+  body {
+    font-size: 1em; /* Базовий шрифт трохи менший */
+  }
+
+  h1 {
+    font-size: 2.5em; /* Компактніший заголовок */
+  }
+
+  .game-library {
+    gap: 20px; /* Менший проміжок між картками */
+    padding: 30px; /* Компактніші відступи */
+    max-width: 1280px; /* Ширина для 4 карток у ряд */
+  }
+
+  .game-card {
+    width: 240px; /* Менші картки, щоб помістилося 4 у ряд */
+  }
+
+  .game-card img {
+    height: 260px; /* Компактніша висота зображення */
+  }
+
+  .game-card .game-title {
+    font-size: 1.1em; /* Менший шрифт заголовка */
+  }
+
+  .game-card .game-description {
+    font-size: 0.85em; /* Компактніший опис */
+  }
+
+  .search-box {
+    width: 600px; /* Трішки компактніший пошук */
+  }
+
+  .search-box input[type="text"] {
+    font-size: 0.95em; /* Менший шрифт */
+    padding: 10px;
+  }
+
+  .search-box button {
+    padding: 10px 20px; /* Компактніша кнопка */
+  }
+
+  .rating-section .star {
+    font-size: 22px; /* Менші зірки */
+  }
+
+  .auth-buttons .btn {
+    padding: 0.7rem 1.4rem; /* Компактніші кнопки */
+    font-size: 0.95em; /* Менший шрифт */
+  }
+}

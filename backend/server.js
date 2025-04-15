@@ -5,13 +5,14 @@ const cors = require('cors');
 
 const app = express();
 
-// Дозволяємо лише конкретні домени (де твій фронтенд)
+// Дозволяємо лише конкретні домени (де твій фронтенд)і
 const allowedOrigins = [
-  'https://versel-ashen.vercel.app/', // Замінити на актуальний URL
+  'https://versel-ashen.vercel.app',
+  'http://localhost:3000', // Додаємо для локального тестування фронтенду
 ];
 
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true); // дозволяємо запит
     } else {
@@ -36,6 +37,7 @@ app.use('/api/games', require('./routes/game'));
 app.use('/api/comments', require('./routes/comment'));
 app.use('/api/chats', require('./routes/chat'));
 app.use('/api/library', require('./routes/library'));
+app.use('/api/gemini-chat', require('./routes/gemini')); // Новий маршрут для Gemini
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
