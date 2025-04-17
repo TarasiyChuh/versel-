@@ -1,77 +1,256 @@
+/* GeminiChat.css */
 .gemini-chat-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  max-width: 900px;
+  min-height: 500px;
+  margin: 50px auto;
+  padding: 35px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), #868686);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.gemini-chat-container h2 {
+  font-size: 1.75rem;
+  color: #2d2d2d;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .chat-window {
-  max-height: 400px;
+  min-height: 300px; /* Мінімальна висота на старті */
+  max-height: 500px; /* Дещо збільшено */
   overflow-y: auto;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid #d5d5d5;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05); /* Легенька внутрішня тінь */
+  scrollbar-width: thin;
+  scrollbar-color: #b0b0b0 #ffffff;
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  border-radius: 5px;
 }
 
 .chat-message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 80%;
+  margin: 12px 0;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 75%; /* Трохи ширші повідомлення */
+  word-wrap: break-word;
+  position: relative;
+  transition: transform 0.2s ease;
 }
 
 .user-message {
-  background-color: #007bff;
-  color: white;
+  background: #d8d8d8;
+  color: #2d2d2d;
   margin-left: auto;
+  border-top-right-radius: 2px;
 }
 
 .gemini-message {
-  background-color: #e9ecef;
-  color: black;
+  background: #a8a8a8;
+  color: #ffffff;
   margin-right: auto;
-}
-
-.chat-input-form {
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.send-button,
-.clear-button,
-.image-button {
-  padding: 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.send-button:hover,
-.clear-button:hover,
-.image-button:hover {
-  background-color: #0056b3;
-}
-
-.send-button:disabled,
-.clear-button:disabled,
-.image-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+  border-top-left-radius: 2px;
 }
 
 .chat-image {
   max-width: 100%;
-  max-height: 200px;
+  height: auto;
+  border-radius: 10px;
   margin-bottom: 10px;
+  border: 1px solid #d5d5d5;
+}
+
+.chat-input-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px;
+  border: none;
   border-radius: 8px;
+  background: #f0f0f0;
+  font-size: 0.95rem;
+  color: #2d2d2d;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+.chat-input:focus {
+  background: #e5e5e5;
+}
+
+.chat-input::placeholder {
+  color: #b0b0b0;
+}
+
+.image-button,
+.send-button,
+.clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Трохи більші кнопки */
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #a8a8a8;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.image-button:hover,
+.send-button:hover,
+.clear-button:hover {
+  background: #909090;
+  transform: scale(1.1);
+}
+
+.image-button:disabled,
+.send-button:disabled,
+.clear-button:disabled {
+  background: #d8d8d8;
+  cursor: not-allowed;
+}
+
+.image-button svg,
+.send-button svg,
+.clear-button svg {
+  font-size: 1.3rem;
+}
+
+/* Анімація для "Cosmo думає..." */
+.gemini-message:last-child:not(.chat-message) {
+  opacity: 0.8;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .gemini-chat-container {
+    max-width: 90%;
+    margin: 15px auto;
+    padding: 20px;
+  }
+
+  .chat-window {
+    max-height: 350px;
+  }
+
+  .chat-message {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  .chat-input-form {
+    gap: 10px;
+  }
+
+  .chat-input {
+    font-size: 0.9rem;
+  }
+
+  .image-button,
+  .send-button,
+  .clear-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* GeminiChat.css */
+
+/* Анімація появи */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Прев’ю картинки з “хрестиком” */
+.image-preview {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.image-preview img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.remove-img {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  color: #fff;
+}
+.remove-img:hover {
+  background: rgba(0,0,0,0.5);
+}
+
+/* Таймстемп під повідомленням */
+.timestamp {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* “Cosmo думає…” наближується ефектом пульсації */
+.typing {
+  opacity: 0.8;
+  animation: pulse 1.6s infinite;
+}
+
+/* Пульсація */
+@keyframes pulse {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }

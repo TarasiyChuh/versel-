@@ -10,11 +10,11 @@ mongoose.connect('mongodb+srv://cuhnickijtaras:Cuhnickijtaras12345@cluster0.ygtd
 const addGame = async () => {
   try {
     const newGame = new Game({
-      title: 'atomic',
-      description: 'Forza Horizon 5 — це екстремальні гонки, де гравці можуть випробувати',
+      title: 'Mushrooming',
+      description: 'Ви чули про гриб, якого не існує?Аттікус має. А тепер він сховався в орендованій хатині під лісом, де востаннє бачили міфічного великого боровика 25 років тому. Підживлений рідкою відвагою, він вирушає в ліс, переслідуючи легенди та славу.',
       link: '',  // Лінк залишимо порожнім
-      photo: 'images/AtomicHeart.jpg',
-      genre: 'Гонки'  // Тепер жанр просто рядок
+      photo: '/images/grub.png',
+      genre: 'Пригода'  // Тепер жанр просто рядок
     });
 
     await newGame.save();  // Зберігаємо гру в базу
