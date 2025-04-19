@@ -139,7 +139,7 @@ function GameDetails() {
         }),
       });
       if (res.ok) {
-        alert('Гра додана до вашої бібліотеки!');
+        
         window.open(game.link, '_blank');
       } else {
         alert('Не вдалося додати гру до бібліотеки.');

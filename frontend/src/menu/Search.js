@@ -11,15 +11,20 @@ function Search() {
       const title = card.querySelector('.game-title').textContent.toLowerCase();
       const description = card.querySelector('.game-description').textContent.toLowerCase();
 
-      if (title.includes(query) || description.includes(query)) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display =
+        title.includes(query) || description.includes(query)
+          ? ''
+          : 'none';
     });
   };
 
-  // Відловлюємо Enter у формі
+  // Якщо клікнули в рядок — кидаємо на головну
+  const handleInputClick = () => {
+    if (window.location.pathname !== '/') {
+      window.location.href = '/';
+    }
+  };
+
   const onSubmit = e => {
     e.preventDefault();
     performSearch();
@@ -33,7 +38,7 @@ function Search() {
           id="search-input"
           ref={inputRef}
           placeholder="Пошук ігор..."
-          // Додатково можна ще відловити Enter тут, але form + onSubmit вже це робить
+          onClick={handleInputClick}      
           onKeyDown={e => {
             if (e.key === 'Enter') {
               e.preventDefault();
@@ -42,7 +47,12 @@ function Search() {
           }}
         />
         <button type="submit">
-          <img src="/page/free-icon-loupe-751463.png" alt="Search Icon" width="20" height="20" />
+          <img
+            src="/page/free-icon-loupe-751463.png"
+            alt="Search Icon"
+            width="20"
+            height="20"
+          />
         </button>
       </form>
     </div>

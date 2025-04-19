@@ -124,9 +124,7 @@ const Profile = () => {
       </div>
 
       {/* Кнопка чату */}
-      <button onClick={handleStartChat} className="profile-chat-btn">
-        Розпочати чат
-      </button>
+      
     </div>
   );
 };

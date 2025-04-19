@@ -8,6 +8,7 @@ function GeminiChat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null); // Стан для прев’ю
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const chatWindowRef = useRef(null);
@@ -16,22 +17,39 @@ function GeminiChat() {
 
   const baseUrl = `${process.env.REACT_APP_API_URL}/api/gemini-chat`;
 
-  // Автоскрол в низ
-  const scrollToBottom = () => {
+  // Автоскрол вниз
+  const scrollToBottom = useCallback(() => {
     chatWindowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
+  }, []);
 
-  // Після кожного оновлення повідомлень
   useEffect(() => {
     scrollToBottom();
     inputRef.current?.focus();
-  }, [messages, loading]);
+  }, [messages, loading, scrollToBottom]);
 
-  const handleSendMessage = async e => {
+  // Обробка вибору зображення
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file?.type.startsWith('image/')) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file)); // Показуємо прев’ю
+    } else {
+      alert('Вибери зображення (JPEG, PNG, GIF)!');
+    }
+  };
+
+  // Видалення зображення
+  const handleRemoveImage = () => {
+    setImage(null);
+    setImagePreview(null);
+    fileInputRef.current.value = '';
+  };
+
+  // Відправка повідомлення
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if ((!input.trim() && !image) || loading) return;
 
-    // Додаємо своє повідомлення одразу
     const userMessage = {
       id: uuidv4(),
       text: input,
@@ -39,9 +57,10 @@ function GeminiChat() {
       sender: 'user',
       createdAt: new Date().toISOString(),
     };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setImage(null);
+    setImagePreview(null); // Очищаємо прев’ю
     fileInputRef.current.value = '';
     setLoading(true);
 
@@ -52,7 +71,7 @@ function GeminiChat() {
       if (image) formData.append('image', image);
 
       const { data } = await axios.post(baseUrl, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       const geminiMessage = {
@@ -63,7 +82,7 @@ function GeminiChat() {
         createdAt: new Date().toISOString(),
       };
       setSessionId(data.sessionId);
-      setMessages(prev => [...prev, geminiMessage]);
+      setMessages((prev) => [...prev, geminiMessage]);
     } catch (err) {
       const errorMessage = {
         id: uuidv4(),
@@ -71,18 +90,13 @@ function GeminiChat() {
         sender: 'gemini',
         createdAt: new Date().toISOString(),
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleImageChange = e => {
-    const file = e.target.files[0];
-    if (file?.type.startsWith('image/')) setImage(file);
-    else alert('Вибери зображення (JPEG, PNG, GIF)!');
-  };
-
+  // Очищення чату
   const handleClearChat = async () => {
     if (!sessionId) return;
     if (!window.confirm('Точно очистити всю переписку з Cosmo AI?')) return;
@@ -100,7 +114,7 @@ function GeminiChat() {
       <h2>Чат із Cosmo AI</h2>
 
       <div className="chat-window" ref={chatWindowRef}>
-        {messages.map(msg => (
+        {messages.map((msg) => (
           <div
             key={msg.id}
             className={`chat-message ${msg.sender}-message fade-in`}
@@ -108,18 +122,13 @@ function GeminiChat() {
             {msg.image && (
               <div className="image-preview">
                 <img src={msg.image} alt="img" />
-                {msg.sender === 'user' && (
-                  <button onClick={() => setImage(null)} className="remove-img">
-                    <FaTimes />
-                  </button>
-                )}
               </div>
             )}
             <div className="text">{msg.text}</div>
             <div className="timestamp">
               {new Date(msg.createdAt).toLocaleTimeString('uk-UA', {
                 hour: '2-digit',
-                minute: '2-digit'
+                minute: '2-digit',
               })}
             </div>
           </div>
@@ -132,11 +141,25 @@ function GeminiChat() {
       </div>
 
       <form onSubmit={handleSendMessage} className="chat-input-form">
+        {/* Прев’ю зображення до відправки */}
+        {imagePreview && (
+          <div className="image-preview">
+            <img src={imagePreview} alt="Попередній перегляд" />
+            <button
+              type="button"
+              onClick={handleRemoveImage}
+              className="remove-img"
+            >
+              <FaTimes />
+            </button>
+          </div>
+        )}
+
         <input
           ref={inputRef}
           type="text"
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Напиши щось..."
           className="chat-input"
           disabled={loading}
@@ -158,7 +181,11 @@ function GeminiChat() {
           <FaImage />
         </button>
 
-        <button type="submit" className="send-button" disabled={loading || (!input.trim() && !image)}>
+        <button
+          type="submit"
+          className="send-button"
+          disabled={loading || (!input.trim() && !image)}
+        >
           <FaPaperPlane />
         </button>
 

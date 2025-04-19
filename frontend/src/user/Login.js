@@ -29,7 +29,6 @@ function Login() {
       if (!response.ok) {
         setError(data.message || 'Помилка логіну');
       } else {
-        alert('Вхід успішний!');
         // Зберігаємо токен та дані користувача в localStorage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
