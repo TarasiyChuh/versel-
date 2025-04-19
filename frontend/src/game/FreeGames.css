@@ -17,6 +17,29 @@
   margin: 0 auto;
   padding: 0 10px;
 }
+@media (max-width: 1700px) {
+  .games-list {
+    max-width: 1000px; /* Якщо екран менше 1700px, максимальна ширина 1000px */
+  }
+}
+
+@media (max-width: 1200px) {
+  .games-list {
+    max-width: 900px; /* Якщо екран менше 1200px, максимальна ширина 900px */
+  }
+}
+
+@media (max-width: 1000px) {
+  .games-list {
+    max-width: 750px; /* Якщо екран менше 1000px, максимальна ширина 750px */
+  }
+}
+
+@media (max-width: 800px) {
+  .games-list {
+    max-width: 600px; /* Якщо екран менше 800px, максимальна ширина 600px */
+  }
+}
 
 .free-game-card {
   position: relative;

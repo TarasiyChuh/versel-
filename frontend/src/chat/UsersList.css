@@ -87,6 +87,8 @@
   font-size: 0.85em;
   color: #6c757d;
   margin-top: 3px;
+  text-align: left;
+  align-self: flex-start; /* Оце — ключ до чіткого вирівнювання */
 }
 
 /* Повідомлення */

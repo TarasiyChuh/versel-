@@ -37,7 +37,7 @@
 }
 
 .profile-username-text {
-  color: #333; /* Колір як у h1 */
+  color: #e4e3e3; /* Колір як у h1 */
   font-size: 2.5em; /* Розмір як у h1 */
   margin: 0 0 10px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Тінь як у h1 */

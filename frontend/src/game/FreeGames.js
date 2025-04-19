@@ -16,7 +16,7 @@ function FreeGames() {
 
   return (
     <div className="free-games-container">
-      <h1 className="free-games-title">Зона Безкоштовних Ігор</h1>
+      <h1 className="free-games-title">Зона Веб-ігор</h1>
       <div className="games-list">
         {games.map((game) =>
           game.link.startsWith('http') ? (
