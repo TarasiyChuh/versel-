@@ -10,10 +10,10 @@ mongoose.connect('mongodb+srv://cuhnickijtaras:Cuhnickijtaras12345@cluster0.ygtd
 const addGame = async () => {
   try {
     const newGame = new Game({
-      title: 'Mushrooming',
-      description: 'Ви чули про гриб, якого не існує?Аттікус має. А тепер він сховався в орендованій хатині під лісом, де востаннє бачили міфічного великого боровика 25 років тому. Підживлений рідкою відвагою, він вирушає в ліс, переслідуючи легенди та славу.',
-      link: '',  // Лінк залишимо порожнім
-      photo: '/images/grub.png',
+      title: 'Bru & Boegie: Episode 1',
+      description: 'Наводьте та клацайте свій шлях через повністю намальований від руки й анімований світ із повністю озвученим акторським складом та оригінальним саундтреком.',
+      link: 'https://www.dropbox.com/scl/fi/s8k34lal0frfi7uqj9vm6/GetdaMILK_WIN.zip?rlkey=gnhyxadibvncm1g26uzzp9egr&st=rhk338h1&dl=1',  
+      photo: '/images/Bru.png',
       genre: 'Пригода'  // Тепер жанр просто рядок
     });
 

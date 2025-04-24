@@ -12,6 +12,10 @@ function FreeGames() {
     { id: 4, title: 'Sleep', link: 'https://html.itch.zone/html/13360787/index.html', description: 'Пора спати... але як заснути найглибшим сном? Давайте рахувати овець!', imageUrl: '/images/Sleep.png' },
     { id: 4, title: 'God Veins', link: 'https://html.itch.zone/html/13313470/GodVeins[HTML]/index.html', description: 'Керуйте своїми ресурсами та приймайте мудрі рішення, за для перемоги.', imageUrl: '/images/GodVeins.png' },
     { id: 4, title: 'Tidehold', link: 'https://html.itch.zone/html/13344321/index.html', description: 'Візьміть під контроль підводну колонію та стежте за таємничим сигналом до її джерела.', imageUrl: '/images/Tidehold.png' },
+    { id: 4, title: 'POOM', link: 'https://html-classic.itch.zone/html/7204900/index.html?v=1732313664', description: 'Марсіанська база, експерименти Union Aerospace Corporation відкрили портал до пекла. Здається, ти остання людина, борись!', imageUrl: '/images/POOM.png' },
+    { id: 4, title: 'Little Slime Blows', link: 'https://html-classic.itch.zone/html/11235947/index.html', description: 'Це гра про енергійного слизу, який просто хоче зібрати кілька зірок.', imageUrl: '/images/Little.png' },
+    { id: 4, title: 'goodbye, doggy', link: 'https://html-classic.itch.zone/html/1249714/index.html?v=1574336082', description: 'Ваше гарне життя сімейного улюбленця раптово закінчилося! Допоможіть своїй родині подолати горе, переходячи з кімнати в кімнату та досліджуючи будинок.', imageUrl: '/images/doggy.png' },
+    { id: 4, title: 'Picture Perfect', link: 'https://html-classic.itch.zone/html/11385559/picture-perfect_1.0.4-web/index.html?v=1732313548', description: 'Знайдіть ідеальний знімок у цій затишній грі-головоломці про вимушену перспективу.', imageUrl: '/images/perfect.png' },
   ];
 
   return (
