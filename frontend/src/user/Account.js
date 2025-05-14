@@ -4,7 +4,7 @@ import './Account.css'; // Стилі для сторінки профілю
 const Account = () => {
   const [user, setUser] = useState(null);
 
-  // Отримуємо дані користувача з LocalStorage при завантаженні компонента
+  // Отримуємо дані користувача з LocalStorage при завантаженні компонентав
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
