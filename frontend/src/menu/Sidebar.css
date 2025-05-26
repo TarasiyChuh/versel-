@@ -23,6 +23,15 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px; /* Відступ між іконкою та текстом */
+}
+
+.sidebar-header .sidebar-icon {
+  font-size: 24px; /* Ось тут збільшується розмір самої іконки */
 }
 
 .sidebar-button {

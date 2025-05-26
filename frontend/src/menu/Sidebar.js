@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaUser, FaStar, FaGamepad, FaUsers, FaEnvelope, FaRobot } from 'react-icons/fa';
+import { GiGameConsole } from "react-icons/gi";
 import './Sidebar.css';
 
 function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h3>Мій Сайт</h3>
+        <h3><GiGameConsole className="sidebar-icon" /> Nexus</h3>
       </div>
 
       <Link to="/" className="sidebar-button">
