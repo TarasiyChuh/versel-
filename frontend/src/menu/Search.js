@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Search as SearchIcon } from 'lucide-react';
 
 function Search() {
   const inputRef = useRef(null);
@@ -18,7 +19,6 @@ function Search() {
     });
   };
 
-  // Якщо клікнули в рядок — кидаємо на головну
   const handleInputClick = () => {
     if (window.location.pathname !== '/') {
       window.location.href = '/';
@@ -38,7 +38,7 @@ function Search() {
           id="search-input"
           ref={inputRef}
           placeholder="Пошук ігор..."
-          onClick={handleInputClick}      
+          onClick={handleInputClick}
           onKeyDown={e => {
             if (e.key === 'Enter') {
               e.preventDefault();
@@ -47,12 +47,7 @@ function Search() {
           }}
         />
         <button type="submit">
-          <img
-            src="/page/free-icon-loupe-751463.png"
-            alt="Search Icon"
-            width="20"
-            height="20"
-          />
+          <SearchIcon size={20} />
         </button>
       </form>
     </div>
